@@ -1,0 +1,10 @@
+{
+  "name": "gs-moulid-game",
+  "version": "0.1.0",
+  "description": "Minimal Phaser starter for GS Moulid Game",
+  "scripts": {
+    "start": "npx http-server -c-1 -p 8000"
+  },
+  "author": "globalsolutions6",
+  "license": "MIT"
+}
