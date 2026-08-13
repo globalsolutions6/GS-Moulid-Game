@@ -4,8 +4,11 @@ This is a minimal Phaser (v3) starter project added to globalsolutions6/GS-Mouli
 
 What it contains
 - index.html — game entry using Phaser from CDN
-- src/main.js — Phaser bootstrap
-- src/scenes/PlayScene.js — simple player movement, one moving enemy, scoring and reset
+- src/main.js — Phaser bootstrap (now registers Menu, Play, and GameOver scenes)
+- src/scenes/MenuScene.js — main menu with start button and high-score display
+- src/scenes/PlayScene.js — player movement, one moving enemy, scoring and transition to Game Over
+- src/scenes/GameOverScene.js — shows final score, saves high-score to localStorage and restarts
+- src/utils/save.js — small helper to load/save high score from localStorage
 
 How to run (quick)
 1. Clone the repo:
@@ -18,13 +21,16 @@ How to run (quick)
    - or using npm: npm run start
 4. Open http://localhost:8000 in your browser and the game will load.
 
-How to extend
-- Add assets/ and load images/sprites in preload()
-- Create additional scenes and add them to the config
-- Hook up scoring, levels, UI, and sounds
+Gameplay
+- From the Menu select START to play.
+- Controls: arrow keys to move the green square (player).
+- Avoid the red square (enemy). Score increases over time; colliding will send you to the Game Over screen.
+- High scores are stored in localStorage under the key `gs_moulid_highscore`.
 
-If you want, I can:
-- Add an assets folder with placeholder art
-- Wire up a simple menu and game over scene
-- Configure CI to build and deploy to GitHub Pages
+Next steps I can do for you
+- Add placeholder art and sounds to an assets/ directory and update preload() to use them.
+- Add a proper sprite-based player and animations.
+- Add levels, obstacles, and additional enemy types.
+- Deploy to GitHub Pages or set up a GitHub Action to publish on push.
 
+Tell me which next step you'd like or say "Do all" and I will implement everything and push it to the feature branch.

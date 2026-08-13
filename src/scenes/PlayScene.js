@@ -25,19 +25,20 @@ export default class PlayScene extends Phaser.Scene {
     this.enemy.body.setBounce(1, 1);
     this.enemy.body.setCollideWorldBounds(true);
 
-    // Collision/overlap handler
-    this.physics.add.overlap(this.player, this.enemy, this.onPlayerHit, null, this);
+    // Collision/overlap handler - go to GameOver scene and save score
+    this.physics.add.overlap(this.player, this.enemy, () => {
+      const last = Math.floor(this.score);
+      this.registry.set('lastScore', last);
+      const high = this.registry.get('highscore') || 0;
+      if (last > high) {
+        this.registry.set('highscore', last);
+        localStorage.setItem('gs_moulid_highscore', last);
+      }
+      this.scene.start('GameOver', { score: last });
+    }, null, this);
 
     // Instructions
     this.add.text(10, 570, 'Use arrow keys to move. Avoid the red square. Score increases over time.', { font: '14px Arial', fill: '#cccccc' });
-  }
-
-  onPlayerHit(){
-    // Reset score and player position on hit
-    this.score = 0;
-    this.scoreText.setText('Score: 0');
-    this.player.x = 400; this.player.y = 300;
-    this.player.body.setVelocity(0,0);
   }
 
   update(time, delta){
